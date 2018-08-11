@@ -5,17 +5,24 @@
     <title>Title</title>
 </head>
 
-<body>
+<body >
+
+<a href="/tasks"> Wszystkie</a>
+<a href="/finished"> Skończone</a>
+<a href="/unfinished"> Nieskończone</a>
+
 <h1>Dodaj zadanie</h1>
-<form action="/tasks" method="post">
-    <label>Podaj nazwe</label>
-    <input type="text" name="name">
-    <label>Podaj opis</label>
+
+<form action="/tasks"  method="post">
+    <label> Podaj nazwe </label>
+    <input type="text"  name="name">
+    <label> Podaj opis </label>
     <textarea name="description">
     </textarea>
-    <label>Skończony</label>
+    <label> Skończony </label>
     <input type="checkbox" name="finished">
     <input type="submit" value="Dodaj zadanie">
+
 </form>
 </body>
 </html>

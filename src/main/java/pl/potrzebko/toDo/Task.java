@@ -39,20 +39,19 @@ public class Task {
         this.description = description;
     }
 
-    public boolean getIsFinished() {
+    public boolean isFinished() {
         return isFinished;
     }
 
-    public void setIsFinished(boolean isFinished) {
+    public void setisFinished(boolean isFinished) {
         this.isFinished = isFinished;
     }
 
-    @Override
-    public String toString() {
-        return "Task{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", isFinished=" + isFinished +
-                '}';
+
+        @Override
+        public String toString() {
+            return getName()+" "+getDescription()+
+                    (isFinished ?  "skończone" : "nieskończone");
+        }
     }
-}
+

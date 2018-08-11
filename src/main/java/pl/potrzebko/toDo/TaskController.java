@@ -1,17 +1,19 @@
 package pl.potrzebko.toDo;
 
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class TaskController {
 
-    @ResponseBody // zwróć mi stringa
+    private TaskDao taskDao = new StaticDao ();
+
+
     @PostMapping("/tasks")
     public String create (@RequestParam String name,
                           @RequestParam String description,
@@ -20,8 +22,27 @@ public class TaskController {
 
     Task task = new Task (name, description,finished);
     modelMap.put("task",task);
-    return "added"+ task;
+    taskDao.addTask (task);
 
+        return "redirect:/tasks";
+    //przejdz mi do sciezki/tasks z metodą http get
+
+    }
+
+    @GetMapping("/tasks")
+    public String index (ModelMap modelMap){
+        modelMap.put ("tasks",taskDao.findAll());
+        return "index";
+    }
+    @GetMapping("/finished")
+    public String finished (ModelMap modelMap){
+        modelMap.put ("tasks",taskDao.findByStatus (true));
+        return "index";
+    }
+    @GetMapping("/unfinished")
+    public String unfinished (ModelMap modelMap) {
+        modelMap.put ("tasks", taskDao.findByStatus (false));
+        return "index";
     }
     @GetMapping("/")
     public String add(){

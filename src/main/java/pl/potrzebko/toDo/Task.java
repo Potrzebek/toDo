@@ -46,4 +46,13 @@ public class Task {
     public void setIsFinished(boolean isFinished) {
         this.isFinished = isFinished;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", isFinished=" + isFinished +
+                '}';
+    }
 }
